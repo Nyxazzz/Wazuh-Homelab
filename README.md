@@ -1,4 +1,4 @@
-### 🛡️ Homelab de Ciberseguridad — Red Team & Blue Team
+## 🛡️ Homelab de Ciberseguridad — Red Team & Blue Team
 
 Laboratorio de ciberseguridad desarrollado sobre un entorno Homelab, diseñado para practicar de forma controlada diferentes técnicas de Red Team, Blue Team, monitorización, detección y respuesta ante incidentes.
 
