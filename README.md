@@ -7,4 +7,11 @@ El objetivo principal es construir una infraestructura en la que sea posible ata
 ## 🎯 Objetivos
 - Comprender el funcionamiento de un SIEM
 - Aprender a deplegar y administrar Wazuh
-- Monitorizar servidores Linux mediante Wazuh Agent
+- Monitorizar servidores Linux mediante **Wazuh Agent**
+- Analizar logs de Apache.
+- Realizar atauqes controlados conta servicios **web**
+- Indentificar indicadores de compromiso (IoC)
+- Analizar alertas y eventos de seguridad
+- Mejorar las capacidades de detección
+- Aplicar medidas de hardening y mitigación
+- Documentar todo el proceso mediante la perspectiva de Blue Team y Red Team
