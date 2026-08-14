@@ -9,33 +9,14 @@ La infraestructura se divide inicialmente en dos máquinas virtuales:
 - Wazuh Agent
 
 ## VM-02: Ubuntu Server
-Wazuh
+### Wazuh
   - Server
   - Indexer
   - Dashboard
 
 Del apartado de **Atacante/Red Team** tenemos un nodo fisico destionado a esas operaciones.
 
+## Nodo Fisico: Archcraft
+Herramientas de seguridad ofensiva para pruebas de ataque al servidor de la VM-01
 
-┌──────────────────┐
-│      WAZUH       │ 
-│      SIEM        │ 
-└────────▲─────────┘ 
-         │ 
-  Monitorización
-         │ 
-┌────────┴─────────┐ 
-│   Ubuntu Server  |
-│                  |
-| Apache           │ 
-│ Nextcloud        │ 
-│ Wazuh Agent      │ 
-└────────▲─────────┘ 
-         │ 
-      Ataques
-         │ 
-┌────────┴─────────┐ 
-│      KALI        │ 
-│     Red Team     │ 
-└──────────────────┘
 
