@@ -42,4 +42,4 @@ Desde la perspectiva defensiva se analizará:
 
  El objetivo será determinar:
 
-### **Qué ocurrió, como ocurrión, qué evidencias dejó y cómo podemos detectarlo y prevenirlo**
+### **Qué ocurrió, como ocurrió, qué evidencias dejó y cómo podemos detectarlo y prevenirlo**
