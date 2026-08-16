@@ -15,3 +15,31 @@ El objetivo principal es construir una infraestructura en la que sea posible ata
 - Mejorar las capacidades de detección
 - Aplicar medidas de hardening y mitigación
 - Documentar todo el proceso mediante la perspectiva de Blue Team y Red Team
+
+## Red Team
+Los ejercicios de Red Team estarán orientados a simular diferentes fases de un ataque:
+
+1. Reconocimiento.
+2. Enumeración.
+3. Identificación de vulnerabilidades.
+4. Explotación.
+5. Obtención de acceso.
+6. Post-Explotación.
+7. Analisis de eviendias
+
+Los ataques se realizaran **unicamente** conta sistemas pertenecientes al laboratorio.
+
+## Blue Team
+Desde la perspectiva defensiva se analizará:
+- Logs de Apache.
+- Logs del sistema.
+- Eventos de autenticación
+- Procesos.
+- Cambios de archivos.
+- Indicadores de compromiso-
+- Alertas generadas por Wazuh
+- Técnicas utilizadas durante los ataques.
+
+ El objetivo será determinar:
+
+### **Qué ocurrió, como ocurrión, qué evidencias dejó y cómo podemos detectarlo y prevenirlo**
