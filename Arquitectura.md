@@ -21,5 +21,3 @@ Del apartado de **Atacante/Red Team** tenemos un nodo fisico destionado a esas o
 
 ## Nodo Fisico: Archcraft
 Herramientas de seguridad ofensiva para pruebas de ataque al servidor de la VM-01
-
-
