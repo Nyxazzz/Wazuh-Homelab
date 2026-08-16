@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <title>Detecta el Phishing – Guía rápida</title>
+      <style>
+          /* ---------- Paleta de colores ---------- */
+          :root {
+              --bg-black   : #000000;
+              --accent-red : #ff3b30;
+              --accent-orange: #ff9500;
+              --accent-blue: #0a84ff;
+              --text-light : #e0e0e0;
+              --card-bg    : rgba(255,255,255,0.07);
+          }
+
+          /* ---------- Reset básico ---------- */
+          *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+
+          body {
+              background-color: var(--bg-black);
+              color: var(--text-light);
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              line-height: 1.6;
+              min-height: 100vh;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 2rem;
+          }
+
+          header {
+              text-align: center;
+              margin-bottom: 2rem;
+          }
+
+          h1 {
+              font-size: 2.2rem;
+              color: var(--accent-blue);
+              margin-bottom: 0.5rem;
+          }
+
+          .subtitle {
+              font-size: 1.1rem;
+              color: var(--accent-orange);
+          }
+
+          /* ---------- Tarjeta de contenido ---------- */
+          .card {
+              background: var(--card-bg);
+              border: 2px solid var(--accent-red);
+              border-radius: 12px;
+              padding: 2rem;
+              width: 100%;
+              max-width: 600px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+          }
+
+          .info {
+              margin-bottom: 1.5rem;
+              font-size: 1rem;
+          }
+
+          .info ul {
+              margin-top: 0.5rem;
+              padding-left: 1.2rem;
+          }
+
+          .info code {
+              background: rgba(255,255,255,0.1);
+              padding: 0.2rem 0.4rem;
+              border-radius: 4px;
+              font-family: monospace;
+          }
+
+          /* ---------- Lista de ejemplos ---------- */
+          .examples {
+              margin-top: 1.5rem;
+          }
+
+          .examples h2 {
+              color: var(--accent-blue);
+              margin-bottom: 0.5rem;
+          }
+
+          .example-item {
+              background: rgba(0,0,0,0.4);
+              border-left: 4px solid var(--accent-orange);
+              padding: 0.8rem 1rem;
+              margin-bottom: 0.8rem;
+              border-radius: 0 6px 6px 0;
+          }
+
+          .example-item.legit   { border-left-color: var(--accent-blue); }
+          .example-item.suspicious { border-left-color: var(--accent-red); }
+
+          /* ---------- Footer ---------- */
+          footer {
+              margin-top: 2rem;
+              font-size: 0.9rem;
+              opacity: 0.7;
+              text-align: center;
+              width: 100%;
+              max-width: 600px;
+          }
+
+          a {
+              color: var(--accent-blue);
+              text-decoration: none;
+          }
+
+          a:hover { text-decoration: underline; }
+      </style>
+  </head>
+  <body>
+
+  <header>
+      <h1>🛡️  Detecta el Phishing</h1>
+      <p class="subtitle">Aprende a reconocer URLs sospechosas y protege tus datos</p>
+  </header>
+
+  <main>
+      <section class="card">
+          <div class="info">
+              <strong>¿Qué es el phishing?</strong><br>
+              Es una técnica de engaño donde el atacante se hace pasar por una entidad de
+  confianza (banco, serviço de correo, red social, etc.) para obtener información confidencial
+  como contraseñas o datos de tarjetas.<br><br>
+              Señales de alerta típicas:
+              <ul>
+                  <li>Dominios ligeramente alterados (ej. <code>paypa1.com</code> en vez de
+  <code>paypal.com</code>)</li>
+                  <li>Uso de subdominios confusos
+  (<code>secure-login.paypal.com.attacker.com</code>)</li>
+                  <li>Protocolos <code>http://</code> en sitios que deberían usar
+  <code>https://</code></li>
+                  <li>Mensajes urgentes que piden acción inmediata</li>
+              </ul>
+          </div>
+
+          <div class="examples">
+              <h2>Ejemplos de URLs</h2>
+
+              <div class="example-item legit">
+                  <strong>Legítima:</strong> <code>https://www.paypal.com/signin</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>http://paypal-security.com/login</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong>
+  <code>https://secure.paypal.com.attacker.net/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://paypa1.com/</code>
+              </div>
+
+              <div class="example-item legit">
+                  <strong>Legítima:</strong> <code>https://bbva.com/login</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>http://bbva-bank-login.com/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://bbva.com.login.bad.site/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://bbva.com@login.com/</code>
+  como contraseñas o datos de tarjetas.<br><br>
+              Señales de alerta típicas:
+              <ul>
+                  <li>Dominios ligeramente alterados (ej. <code>paypa1.com</code> en vez de
+  <code>paypal.com</code>)</li>
+                  <li>Uso de subdominios confusos
+  (<code>secure-login.paypal.com.attacker.com</code>)</li>
+                  <li>Protocolos <code>http://</code> en sitios que deberían usar
+  <code>https://</code></li>
+                  <li>Mensajes urgentes que piden acción inmediata</li>
+              </ul>
+          </div>
+
+          <div class="examples">
+              <h2>Ejemplos de URLs</h2>
+
+              <div class="example-item legit">
+                  <strong>Legítima:</strong> <code>https://www.paypal.com/signin</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>http://paypal-security.com/login</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong>
+  <code>https://secure.paypal.com.attacker.net/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://paypa1.com/</code>
+              </div>
+
+              <div class="example-item legit">
+                  <strong>Legítima:</strong> <code>https://bbva.com/login</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>http://bbva-bank-login.com/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://bbva.com.login.bad.site/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong> <code>https://bbva.com@login.com/</code>
+              </div>
+
+              <div class="example-item legit">
+                  <strong>Legítima:</strong> <code>https://mail.google.com/</code>
+              </div>
+
+              <div class="example-item suspicious">
+                  <strong>Sospechosa:</strong>
+  <code>https://accounts.google.com.login.fake.com/</code>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      Código de ejemplo para Apache – <a href="https://www.claude.com">Creado con Claude
+  Code</a>
+  </footer>
+
+  </body>
+  </html>
