@@ -6,7 +6,8 @@ La infraestructura se divide inicialmente en dos máquinas virtuales:
 - Nextcloud
 - Apache
 - Docker
-- Wazuh Agent
+<img width="641" height="375" alt="imagen" src="https://github.com/user-attachments/assets/6d3b5314-bd33-4117-a6da-acc19b3079fb" />
+
 
 ## VM-02: Ubuntu Server
 ### Wazuh
