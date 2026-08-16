@@ -44,7 +44,7 @@ Desde la perspectiva defensiva se analizará:
 
 ### **Qué ocurrió, como ocurrió, qué evidencias dejó y cómo podemos detectarlo y prevenirlo**
 
-## ⚠️ Disclaimer
+# ⚠️ Disclaimer
 
 Este proyecto se desarrolla exclusivamente con fines **educativos y de investigación en ciberseguridad.**
 
