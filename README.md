@@ -43,3 +43,11 @@ Desde la perspectiva defensiva se analizará:
  El objetivo será determinar:
 
 ### **Qué ocurrió, como ocurrió, qué evidencias dejó y cómo podemos detectarlo y prevenirlo**
+
+## ⚠️ Disclaimer
+
+Este proyecto se desarrolla exclusivamente con fines **educativos y de investigación en ciberseguridad.**
+
+Todas las pruebas de explotación se realizarán sobre sistemas propios y dentro de un entorno de laboratorio controlado.
+
+**No se realizarán pruebas contra sistemas, redes o servicios para los que no exista autorización.**
