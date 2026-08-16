@@ -15,6 +15,8 @@ La infraestructura se divide inicialmente en dos máquinas virtuales:
   - Indexer
   - Dashboard
 
+<img width="631" height="333" alt="Captura de pantalla_20260816_083400" src="https://github.com/user-attachments/assets/04a344b4-f7f0-4684-ab78-d05f709040f9" />
+
 Del apartado de **Atacante/Red Team** tenemos un nodo fisico destionado a esas operaciones.
 
 ## Nodo Fisico: Archcraft
