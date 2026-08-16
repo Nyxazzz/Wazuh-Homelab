@@ -16,7 +16,7 @@ El objetivo principal es construir una infraestructura en la que sea posible ata
 - Aplicar medidas de hardening y mitigación
 - Documentar todo el proceso mediante la perspectiva de Blue Team y Red Team
 
-## Red Team
+## 🔴 Red Team
 Los ejercicios de Red Team estarán orientados a simular diferentes fases de un ataque:
 
 1. Reconocimiento.
@@ -29,7 +29,7 @@ Los ejercicios de Red Team estarán orientados a simular diferentes fases de un 
 
 Los ataques se realizaran **unicamente** conta sistemas pertenecientes al laboratorio.
 
-## Blue Team
+## 🔵 Blue Team
 Desde la perspectiva defensiva se analizará:
 - Logs de Apache.
 - Logs del sistema.
