@@ -229,3 +229,42 @@ sudo a2dismod autoindex
 ```
 Y de ahi recargaremos nuestro servicio. Esto es importante hacerlo en cada cambio que hagamos en el.
 
+## Archivos sensibles
+
+En este apartado eviaremos que Apache pueda servir accidentalmente archivos que nunca deberían ser accesibles desde la web.
+Una forma en la que podemos hacer eso es bloquear extensiones de archivos que pueden llegar a contener información critica sobre el entorno.
+
+```bash
+.git
+.env
+*.bak
+*.sql
+
+Tambien directorios/archivos de configuración o copias de seguridad
+```
+### Ejemplo Real
+
+Imaginemonos que tenemos los siguientes archivos
+
+```bash
+/var/www/html/.env
+/var/www/html/bakup.sql
+/var/www/html/config.bak
+```
+Al desactivar los **Indexes**, no nos aparecerán en el navegador, pero podemos hacer uso de la herramienta **curl** para saber el estado de estas URLs y si existen esos archivos.
+
+Si desde la maquina atacante ejecutamos el comando a uno de los archivos, podremos ver los siguiente:
+```bash
+curl -I http://192.168.1.10/config.bak
+
+HTTP/1.1 200 OK
+Date: Mon, 17 Aug 2026 22:31:40 GMT
+Server: Apache
+Last-Modified: Mon, 17 Aug 2026 22:27:43 GMT
+ETag: "0-65945adc8df19"
+Accept-Ranges: bytes
+Content-Type: application/x-trash
+```
+
+Esto es un riego, ya que si realmente se hace en elementos críticos, aunque no tengamos los **Indexes** expuestos, pueden saber que hay archivos en esa web.
+
