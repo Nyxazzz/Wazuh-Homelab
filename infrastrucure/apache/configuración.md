@@ -125,9 +125,9 @@ sudo systemctl restart apache2
 ```
 
 ## Permisos de acceso.
-Ahora lo que vamos a hacer será controlar quién es propietario de los archivos y quién puede modificarlos
+Ahora lo que vamos a hacer será controlar quién es propietario de los archivos y quién puede modificarlos.
 
-La configuración que buscamos es la siguiente
+La configuración que buscamos es la siguiente:
 ```bash
 Propietario → root
 Grupo       → www-data
@@ -140,4 +140,42 @@ sudo find /var/www/html -type d -exec chmod 755 {} \;
 sudo find /var/www/html -type f -exec chmod 644 {} \;
 ```
 
-Con estos tres comandos lo que hemos hecho es que, los archivos pertenecen a root y Apache(www-data) dispone de permisos de lectura, eviantrdo queel proceso web pueda modificar arbitrariamente los archivos de la aplicación
+Con estos tres comandos lo que hemos hecho es que, los archivos pertenecen a **root** y Apache(www-data) dispone de permisos de lectura, eviantrdo queel proceso web pueda modificar arbitrariamente los archivos de la aplicación.
+
+## Ocultar información de Apache,
+
+En este apartado haremos que **Apache** evite revelar informacion innecesaria sobre su versión y sistema operativo.
+
+Para ello nos iremos al archivo de configuración **/etc/apache2/conf-available/security.conf**y buscaremos los siguientes apartados:
+```bash
+ServerTokens OS
+ServerSignature On
+```
+Estos parámetros significan:
+
+**ServerTokens OS**: Controla cuánta información sobre Apache aparece en las respuestas HTTP
+**ServerSignature**: Hace que apache muestre información del servidor en paginas de error generadas por Apache, como una pagina 404.
+
+### Ejemplo real:
+Si nosotros estamos tanto fuera de la red como dentro, y tenemos este ajuste por defecto, si en nuestra maquina atacante hacemos un escaneo y reconocimiento del objetvo, por ejemplo, con la herramienta **Nmap**, nos aparecerá la siguiente información.
+
+```bash
+80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))
+```
+Esto revela el estado e informacion del servicio corriendo, cosa que puede llevar a descubrir una vulenrabilidad en esa versión.
+Para evitar esta fuga de datos, en los ajustes anteriormente mencionados, cambiaremos los parámetros por:
+
+```bash
+ServerTokens Prod
+ServerSignature OFF
+```
+Si ahora hago un escaneo de nuevo al servidor, solo nos aparecera
+```bash
+80/tcp   open  http    Apache httpd
+```
+Con esta modificación hacemos que
+
+**ServerTokens:** se establece en Prod para limitar la informacion de versión expuesta por Apache.
+**ServerSignature:** se desactiva para evitar que Apache mueste información del servidor en páginas generadas por errores.
+
+Volveremos a hacer el **configtest** para ver si la sintaxis esta correcta y recargaremos el servicio.
