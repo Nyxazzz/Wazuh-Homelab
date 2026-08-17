@@ -169,7 +169,7 @@ Para evitar esta fuga de datos, en los ajustes anteriormente mencionados, cambia
 ServerTokens Prod
 ServerSignature OFF
 ```
-Si ahora hago un escaneo de nuevo al servidor, solo nos aparecera
+Si ahora hago un escaneo de nuevo al servidor, solo nos aparecerá
 ```bash
 80/tcp   open  http    Apache httpd
 ```
@@ -179,3 +179,53 @@ Con esta modificación hacemos que
 **ServerSignature:** se desactiva para evitar que Apache mueste información del servidor en páginas generadas por errores.
 
 Volveremos a hacer el **configtest** para ver si la sintaxis esta correcta y recargaremos el servicio.
+
+## Módulos de Apache
+Son componentes que añaden funcionalidades a Apache, como HTTPS, reescritura de URLs, headers, PHP, etc.
+
+Para saber que tendremos que modificar, primero veremos cuales tenemos con el comando
+```bash
+sudo apache2ctl -M
+```
+
+De lo cual seguramente la salida del comando serán los modulos por defecto:
+```bash
+Loaded Modules:
+ core_module (static)
+ so_module (static)
+ watchdog_module (static)
+ http_module (static)
+ log_config_module (static)
+ logio_module (static)
+ version_module (static)
+ unixd_module (static)
+ access_compat_module (shared)
+ alias_module (shared)
+ auth_basic_module (shared)
+ authn_core_module (shared)
+ authn_file_module (shared)
+ authz_core_module (shared)
+ authz_host_module (shared)
+ authz_user_module (shared)
+ autoindex_module (shared)
+ deflate_module (shared)
+ dir_module (shared)
+ env_module (shared)
+ filter_module (shared)
+ mime_module (shared)
+ mpm_event_module (shared)
+ negotiation_module (shared)
+ reqtimeout_module (shared)
+ setenvif_module (shared)
+ status_module (shared)
+```
+Algunos de estos modulos controla la autenticación, los tipos de MIME, el motor de APache, la comprensión o que simplemente son necesarios para otras funciones.
+
+Del que estamos seguros que podemos prescindir es de **AUTOINDEX**, ya que hemos decidido desactivar el listado de directorios.
+
+Para ello, usaremos el comando **a2dismod**
+```bash
+sudo a2dismod autoindex
+```
+Y de ahi recargaremos nuestro servicio. Esto es importante hacerlo en cada cambio que hagamos en el.
+
