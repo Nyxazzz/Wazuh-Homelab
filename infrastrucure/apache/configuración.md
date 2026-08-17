@@ -73,7 +73,7 @@ sudo a2ensite homelab.conf
 sudo systemctl reload apache2 <!-- Recarga del servicio -->
 ```
 
-## Directory y permisos de acceso.
+## Directory
 
 La directiva **Directory** en DocumentRoot define cómo puede acceder **Apache** a una determinada carpeta del sistema.
 Por defecto, el servicio tiene la siguiente configuración en ese apartado:
@@ -111,7 +111,7 @@ Las configuraciones que hemos hecho en el apartado de arriba significan
 Determina si Apache permite que los archivos de **.htaccess** puedan modificar la configuracion del directorio. Si lo dejamos en **None**, significa que los **.htaccess** no pueden sobrescribir la configuración de Apache
 
 ### Require all granted
-Define quién puede acceder al contenido del directorio. Si lo dejamos en **all granted**, significa que cualquier cliente puede acceder al contenidoque Apache sirve desde ese directorio
+Define quién puede acceder al contenido del directorio. Si lo dejamos en **all granted**, significa que cualquier cliente puede acceder al contenido que Apache sirve desde ese directorio
 
 Para habilitar los cambios, tenemos que hacer una prueba de la configuración
 ```bash
@@ -124,3 +124,20 @@ Si aparece este mensaje, podremos reiniciar el servicio
 sudo systemctl restart apache2
 ```
 
+## Permisos de acceso.
+Ahora lo que vamos a hacer será controlar quién es propietario de los archivos y quién puede modificarlos
+
+La configuración que buscamos es la siguiente
+```bash
+Propietario → root
+Grupo       → www-data
+Permisos    → 755 para directorios / 644 para archivos
+```
+Entonces, para hacer eso, usaremos los siguientes comandos:
+```bash
+sudo chown -R root:www-data /var/www/html
+sudo find /var/www/html -type d -exec chmod 755 {} \;
+sudo find /var/www/html -type f -exec chmod 644 {} \;
+```
+
+Con estos tres comandos lo que hemos hecho es que, los archivos pertenecen a root y Apache(www-data) dispone de permisos de lectura, eviantrdo queel proceso web pueda modificar arbitrariamente los archivos de la aplicación
