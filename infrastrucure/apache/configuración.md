@@ -104,7 +104,7 @@ sudo apache2ctl configtest
 Syntax OK
 ```
 
-Si apacere este mensaje, podremos reiniciar el servicio
+Si aparece este mensaje, podremos reiniciar el servicio
 ```bash
 sudo systemctl restart apache2
 ```
