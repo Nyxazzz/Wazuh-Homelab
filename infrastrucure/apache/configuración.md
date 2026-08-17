@@ -93,10 +93,25 @@ Los cambios son:
 ```bash
 <Directory /var/www/>
         Options -Indexes +FollowSymLinks
-        AllowOverride None
+        AllowOverride None    
         Require all granted
 </Directory>
 ```
+Para también entender un poco los ajustes que hay en este apartado, tendremos en cuenta que 
+
+### Options -Indexes +FollowSymLinks
+Este apartado controla qué funcionalidades tiene permitidas Apache dentro de un directorio
+Las configuraciones que hemos hecho en el apartado de arriba significan
+```bash
+-Indexes --> evita mostrar el contenido de una carpeta si no tiene index.html.
++FollowSymLinks --> permite a Apache seguir enlaces simbólicos
+```
+
+### AllowOverride None
+Determina si Apache permite que los archivos de **.htaccess** puedan modificar la configuracion del directorio. Si lo dejamos en **None**, significa que los **.htaccess** no pueden sobrescribir la configuración de Apache
+
+### Require all granted
+Define quién puede acceder al contenido del directorio. Si lo dejamos en **all granted**, significa que cualquier cliente puede acceder al contenidoque Apache sirve desde ese directorio
 
 Para habilitar los cambios, tenemos que hacer una prueba de la configuración
 ```bash
@@ -109,5 +124,3 @@ Si aparece este mensaje, podremos reiniciar el servicio
 sudo systemctl restart apache2
 ```
 
-
-    
