@@ -86,7 +86,7 @@ Por defecto, el servicio tiene la siguiente configuración en ese apartado:
 </Directory>
 ```
 Esta configuracion hace que Apache permita el listado de directorios mediante Options Indexes.
-Los cambios que realizaemos servirán para deshabilitar **Indexes**, esto lo que hace es evitar que los usuarios puedan visualizar el contenido de los directorios que no tengan el archivo indice.
+Los cambios que realizaremos servirán para deshabilitar **Indexes**, esto lo que hace es evitar que los usuarios puedan visualizar el contenido de los directorios que no tengan el archivo indice.
 
 Los cambios son:
 
@@ -175,7 +175,7 @@ Si ahora hago un escaneo de nuevo al servidor, solo nos aparecerá
 ```
 Con esta modificación hacemos que
 
-**ServerTokens:** se establece en Prod para limitar la informacion de versión expuesta por Apache.
+**ServerTokens:** se establece en Prod para limitar la información de versión expuesta por Apache.
 **ServerSignature:** se desactiva para evitar que Apache mueste información del servidor en páginas generadas por errores.
 
 Volveremos a hacer el **configtest** para ver si la sintaxis esta correcta y recargaremos el servicio.
@@ -266,7 +266,7 @@ Accept-Ranges: bytes
 Content-Type: application/x-trash
 ```
 
-Esto es un riego, ya que si realmente se hace en elementos críticos, aunque no tengamos los **Indexes** expuestos, pueden saber que hay archivos en esa web.
+Esto es un riesgo, ya que si realmente se hace en elementos críticos, aunque no tengamos los **Indexes** expuestos, pueden saber que hay archivos en esa web.
 Para hacer que esto no pase, lo que haremos será ir a nuestro **VirtualHost**, que es archivo que tenemos en **sites-available/** y añadiremos las siguientes líneas.
 
 ```bash
@@ -329,4 +329,30 @@ Content-Length: 10918
 Vary: Accept-Encoding
 Content-Type: text/html
 ```
+## Logs de Apache
 
+Por ultimo de este **Hardening**, comprobaremos lo que se documenta en los logs de nuestro servicio web **Apache**
+
+Los archivos de Log de nuestro servicio, nos iremos a la ruta
+```bash
+cd /var/log/apache2
+ls
+
+access.log
+error.log
+```
+Cada uno almacena registros diferentes
+
+**access.log**: Registra las peticiones HTTP, como la IP, fecha, metodo, URL, codigo HTTP y el User-Agent
+**error.log**: registra errores y problemas internos de Apache.
+
+Para verlo realmente, si nos vamos al archivo **access.log** y nos fijamos un poco, podremos ver los **Nmap** que hemos realizado y los **Curl**.
+
+```bash
+192.168.1.92 - - [17/Aug/2026:21:58:23 +0000] "GET /HNAP1 HTTP/1.1" 404 360 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+192.168.1.92 - - [17/Aug/2026:22:31:40 +0000] "HEAD /config.bak HTTP/1.1" 200 200 "-" "curl/8.21.0"
+```
+Estos registros serán utilizados por Wazuh para la monitorización y detección de actividad sospechosa.
+
+# CONCLUSIÓN
+Si hemos seguido estos apartados, habremos realizado un **Hardening óptimo en Apache 2.4.29**.
