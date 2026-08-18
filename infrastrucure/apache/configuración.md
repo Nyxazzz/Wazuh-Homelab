@@ -267,4 +267,66 @@ Content-Type: application/x-trash
 ```
 
 Esto es un riego, ya que si realmente se hace en elementos críticos, aunque no tengamos los **Indexes** expuestos, pueden saber que hay archivos en esa web.
+Para hacer que esto no pase, lo que haremos será ir a nuestro **VirtualHost**, que es archivo que tenemos en **sites-available/** y añadiremos las siguientes líneas.
+
+```bash
+    <FilesMatch "^(\.env|\.git|.*\.bak|.*\.sql)$">
+        Require all denied
+    </FilesMatch>
+```
+Esto añade la Funciona **FileMatch**, que signfica que todos los archivos que conicidan con esas extensiones, se denegarán.
+
+Una vez aplicado esto y reiniciado el servidor, si de nuevo hacemos el curl, veremos que en vez de darnos el codigo 200, nos dara el 403
+```bash
+curl -I http://192.168.1.10/config.bak
+
+HTTP/1.1 403 Forbidden
+Date: Tue, 18 Aug 2026 11:15:15 GMT
+Server: Apache
+Content-Type: text/html; charset=iso-8859-1
+```
+
+## Cabeceras de Seguridad
+Ahora vamos a añadir cabeceras HTTP de seguridad. Sirven para reducir ciertos ataques del lado del navegador.
+Por defecto, no tenemos ningun tipo de cabeceras asi, entonces las añadiremos manualmente
+
+Lo primero será habilitar el modulo de cabeceras.
+```bash
+sudo a2enmod headers
+```
+
+Nos iremos a nuestro **VirtualHost** y añadiremos los siguientes parámetros
+```bash
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+```
+
+Cada una de estas cabeceras tiene proposito diferente.
+
+**Header always set X-Content-Type-Options "nosniff"**: Obliga a respetar el Content-Type enviado por Apache. Esto lo que hace es ayudar a evitar ciertos ataques relacionados con la interperetación incorrecta de archivos.
+
+**Header always set X-Frame-Options "SAMEORIGIN"**: Impide que tu página sea cargada dentro de un **iframe**(elemento que permite añadir codigo HTML dentro de un documento HTML) desde otro dominio.
+
+**Header always set Referrer-Policy "strict-origin-when-cross-origin"**: Con esta configuración, al salir hacia otro dominio se envía unicamente el origen, no la URL completa. Funciona controlando la información que envía tu URL como **Referer**(cabecera que identifica la direccion de la página web.)
+
+Confirmaremos la sintaxis y recargaremos el servicio.
+
+Si ahora hacemos un **curl** a la url, veremos esos headers de seguridad.
+```bash
+curl -I http://192.168.1.10/
+
+HTTP/1.1 200 OK
+Date: Tue, 18 Aug 2026 11:45:31 GMT
+Server: Apache
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: strict-origin-when-cross-origin
+Last-Modified: Mon, 17 Aug 2026 11:18:29 GMT
+ETag: "2aa6-6593c546934d1"
+Accept-Ranges: bytes
+Content-Length: 10918
+Vary: Accept-Encoding
+Content-Type: text/html
+```
 
