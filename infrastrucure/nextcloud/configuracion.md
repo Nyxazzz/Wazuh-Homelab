@@ -65,3 +65,19 @@ Date: Wed, 19 Aug 2026 21:29:16 GMT
 ```
 Ya viendo estos resultados, vemos que el propio Nextcloud filtra estas páginas haciendo que no se expongan. Esto hace que nos ahorremos una parte de configuración en el archivo **config.php**
 
+## Configuración de PHP.
+Toda la configuración relacionada con el propio **Nextcloud** depende PHP, entonces vamos a revisar configuraciones que afecten a la seguridad o disponibidad.
+
+Lo que principalmente vamos a configurar es:
+
+```bash
+memory_limit
+upload_max_filesize
+post_max_size
+max_execution_time
+
+Junto a algunas funciones de PHP
+```
+
+
+
