@@ -78,6 +78,89 @@ max_execution_time
 
 Junto a algunas funciones de PHP
 ```
+Lo que buscamos con cada configuración de esos parámetros es:
+
+**memory_limit**: Suficiente para Nextloud, sin que sea excesiva.
+**upload_max_filesize**: Limita razonable para la subida de archivos.
+**post_max_size**: Debe ser +-= upload_max_size
+**max_execution_time**: Evitar procesos PHP innecesarios.
+
+Para saber los parámetos actuales de las configuraciones mencionadas, usaremos el siguiente comando:
+
+```bash
+docker exec nextcloud php -i | grep -E "memory_limit|upload_max_filesize|post_max_size|max_execution_time"
+
+max_execution_time => 0 => 0
+memory_limit => 512M => 512M
+post_max_size => 512M => 512M
+upload_max_filesize => 512M => 512M
+```
+Al ser una máquina pequeña y teniendo en cuenta los componentes virtuales que tenemos, esos datos por defecto estan bien y de momento no hace falta cambiarlos.
+
+## Aplicaciones de Nextcloud
+Al insalar Nextcloud, por defecto viene con aplicaciones instaladas que muchas de ellas podemos prescindir al no ser necesarias.
+
+En este caso, las aplicaciones por defecto que se nos instalaron son:
+
+```bash
+Activity 
+AppAPI
+Auditing / Logging 
+Brute-force settings 
+Collaborative tags
+Comments 
+Contacts Interaction 
+Dashboard
+Default Encryption Module 	
+Deleted files 	
+External storage support		
+Federation
+File reminders 
+File sharing 
+Files download limit
+First run wizard
+LDAP user and group backend 
+Log Reader
+Monitoring 
+Nextcloud Webhook Support 
+Nextcloud announcements 
+Notifications
+Office 	
+PDF viewer 
+Password policy 
+Photos 
+Privacy 
+Recommendations 
+Share by mail
+Support
+Suspicious Login 
+Teams 
+Temporary files lock 	
+Text
+Two-Factor Authentication via Nextcloud notification
+Two-Factor TOTP Provider	
+Update notification	
+Usage survey
+User status 
+Versions 
+Weather status
+```
+De las que vamos a prescindir y a desinstalar son:
+
+- **AppAPI**: Añade infraestructura para aplicaciones externas. No es necesario para un Nextcloud básico.
+- **Contacts Interaction**: Funcionalidad adicional que no se necesita para almacenamiento.
+- **Federation**: Permite conectar Nextcloud con otros servidores. No es necesario en este caso
+- **LDAP user and group backend**: Solo necesario si se va a utilizar LDAP/AD.
+- **Nextcloud Webhook Support**: No necesario para el laboratorio inicial.
+- **Office**: Solo si no se va a utilizar edición de documentos online.
+- **Recommendations**: Funcionalidad adicional.
+- **Share by mail**: Si no se va a compartir archivos mediante correo.
+- **Teams**: No necesario para almacenamiento básico.
+- **Weather status**:Completamente prescindible.
+- **Usage survey**: Telemetría/estadísticas que no necesitas.
+- **Sources**: Si no se utiliza las funcionalidades que dependen de ella.
+
+
 
 
 
