@@ -35,6 +35,33 @@ Set-Cookie: ocqhz3t1fqaz=f8242f6db422fdb6aa8a7657976dfdfb; path=/; HttpOnly; Sam
 Location: http://192.168.1.10:8080/login
 Content-Type: text/html; charset=UTF-8
 ```
-Posteriormente, despues de los cambios, veremos las modificaciones que han ocurrido en estas cabeceras
+Posteriormente, despues de los cambios, veremos las modificaciones que han ocurrido en estas cabeceras.
 
+## Permisos y protección de archivos.
+En este apartado queremos evitar que los archivos internos de Nextcloud puedan ser modificados o expuestos de forma indebida.
+
+Como no queremos cambiar el propietario y permisos de Nextlcoud a ciegas, vamos a proteger las carpetas:
+```bash
+config/ (IMPORTANTE)
+custom-apps/
+data/
+```
+Los objetivos que queremos con la protección de estos archivos es:
+
+- El contenedor pueda **leer/escribir** lo que Nextcloud necesita
+- Los usuario no puedan acceder directamente mediante HTTP
+- **Config.php** no sea descargable desde el navegador
+
+Para hacer una prueba, haremos un curl a los directorios, que realmente no debería de detectarse por la seguridad del servicio.
+
+```bash
+curl -i 192.168.1.10:8080/config/config.php
+HTTP/1.1 404 Not Found
+Date: Wed, 19 Aug 2026 21:30:14 GMT
+
+ curl -i 192.168.1.10:8080/data
+HTTP/1.1 404 Not Found
+Date: Wed, 19 Aug 2026 21:29:16 GMT
+```
+Ya viendo estos resultados, vemos que el propio Nextcloud filtra estas páginas haciendo que no se expongan. Esto hace que nos ahorremos una parte de configuración en el archivo **config.php**
 
