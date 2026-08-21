@@ -160,6 +160,26 @@ De las que vamos a prescindir y a desinstalar son:
 - **Usage survey**: Telemetría/estadísticas que no necesitas.
 - **Sources**: Si no se utiliza las funcionalidades que dependen de ella.
 
+## Política de contraseñas.
+Hemos visto que una de las aplicaciones que tenemos instaladas es **Password Policy**, asi que vamos a aprovecharla.
+
+Lo que vamos a hacer con esto es ajustar ciertas características que debe de tener la contraseña de los usuarios para asegurar la seguridad de los mismo.
+Con esto vamos a conseguir **evitar contraseñas débiles**.
+
+Vamos a configurar como mínimo:
+
+- Longitud mínima: **12 caracteres**.
+- Exigir **mayúsculas.**
+- Exigir **minúsculas.**
+- Exigir **números.**
+- Exigir **caracteres especiales**.
+- Impedir contraseñas **demasiado comunes**.
+
+Para hacer estos ajustes tendremos que ir a Nextcloud e ir a **Configuración de Administración** - **Seguridad** - **Política de contraseñas** y ahi asignaremos los ajustes mencionados.
+
+### EXTRA
+Una de las opciones que tambien podemos implementar es la **Comprobación de contraseñas filtradas en haveibeenpwned.com.**
+Esto funciona comprobando el hash de los primero 5 caracteres de la contraseña y comprobando ese mismo hash en la base de datos de haveibeenpwned.
 
 
 
