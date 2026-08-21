@@ -182,5 +182,40 @@ Una de las opciones que tambien podemos implementar es la **Comprobación de con
 Esto funciona comprobando el hash de los primero 5 caracteres de la contraseña y comprobando ese mismo hash en la base de datos de haveibeenpwned.
 
 
+## Protección contra fuerza bruta.
+En este apartado usaremos la aplicación **Brute-Force Settings**.
+Nextcloud detecta mútlples intentos de autenticación fallidos y aplica una limitación para dificultar ataques de fuerza bruta  contra las cuentas
 
+La idea de la configuración de esta aplicación es:
+```bash
+Intentos de login
+       ↓
+Muchos fallos
+       ↓
+Nextcloud detecta
+       ↓
+Limitación temporal
+       ↓
+Ataque ralentizado
+```
+Entraremos en **Configuración de Administración** - **Seguridad** - **Listas de permitidos de la Fuerza Bruta** y habilitaremos la opción.
+La sección de abajo de esta, tenemos la opcion de habilitar una whitelist de IPs con comentarios para identificarlas, cosa que de momento no será necesaria.
 
+### EXTRA
+Esta ultima opcion que hemos habilitado, nos será muy útil para poder identificar ataques de fuerza bruta en nuestro Wazuh cuando esté configurado, teniendo una ruta parecida a:
+
+```bash
+Múltiples intentos de login
+ ↓
+Nextcloud
+ ↓
+Brute-force protection
+ ↓
+Logs
+ ↓
+Wazuh
+ ↓
+Alerta
+```
+
+Asi a parte de la protección estar activada, podremos ver que tendremos evidencias de lo que wazuh puede detectar.ç
