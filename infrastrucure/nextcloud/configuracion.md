@@ -218,4 +218,16 @@ Wazuh
 Alerta
 ```
 
-Asi a parte de la protección estar activada, podremos ver que tendremos evidencias de lo que wazuh puede detectar.ç
+Asi a parte de la protección estar activada, podremos ver que tendremos evidencias de lo que wazuh puede detectar.
+
+## Autenticación de dos factores (2FA)
+Este apartado habla de que los usuarios tendrán que hacer uso de un codigo temporal cuando quieran iniciar sesión.
+
+Al tener 2 aplicaciones que hagan esto (**Two-Factor Authentication via Nextcloud notification** y **Two-Factor TOTP Provide**), en estecaso usaremos TOTP, que son códigos temporales generados por una aplicación de autenticación
+
+Para habilitar esta opción, tendremos que irnos al mismo apartado en los ultimos apartados anteriores y habilitar **Autenticación de dos factores**.
+
+Una vez activo, podremos especificar en que grupos de usuarios esta activado esta opción
+
+Una cosa que también podremos añadir como protección de la cuenta de administrador es ponerle codigo OTP mediante una aplicacion es de autenticación escaneando un QR.
+Para habilitarlo, iremos a **Configuraciones de administración** - **Personal** - **Seguridad** - **TOTP (Authenticator app)** y crear codigos de respaldo.
