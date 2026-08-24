@@ -231,3 +231,41 @@ Una vez activo, podremos especificar en que grupos de usuarios esta activado est
 
 Una cosa que también podremos añadir como protección de la cuenta de administrador es ponerle codigo OTP mediante una aplicacion es de autenticación escaneando un QR.
 Para habilitarlo, iremos a **Configuraciones de administración** - **Personal** - **Seguridad** - **TOTP (Authenticator app)** y crear codigos de respaldo.
+
+## Sesiones y cookies.
+Queremos que las cookies de sesión de Nextcloud tengan restricciones para dificultar que puedan ser utilizados en contextos no deseados.
+
+De todas las opciones, las de vital importancia son:
+
+**secure**: la coolie solo envia mediante HTTPS.
+**httponly**: JavaScript no puede acceder a la cookie.
+**samesite**: Limita el envío de cookies en peticiones **cross-site**
+
+### IMPORTANTE.
+AL nosotros no tener un certificado SSL para poder obetener HTTPS en Nextcloud, debemos de dejar esa configuración de lado.
+
+Para hacer las otras dos, tendremos que ir al archivo **config.php** y añadiremos los apartados **"sessiion_lifetime** y **session_keepalive**, asignando los siguientes valores:
+
+```bash
+'session_lifetime' => 86400,
+'session_keepalive' => false,
+```
+
+Esto hace que la duracion de las sessiones se limiten a 24 horas y evita manener activa una sesión simplemente porque el usuario sigue interactuando de manera indefinida.
+
+Hecho eso, ya solamente tendremos que reiniciar el servicio de docker.
+```bash
+sudo docker restart nextcloud
+```
+
+## Configuración de archivos compartidos.
+En este apartado tendremos que reducir el riego de que un usuario pueda compartir archivos de manera muy abierta.
+En este caso, haremos que la compartición sea **por enlace**.
+
+Tendremos ir a **Administración** - **Compartición** y buscaremos las opciones relacionadas con los enlaces públicos, haciendo que no permitan acceso sin contraseña, activando las casillas:
+
+```bash
+Pedir siempre la contraseña
+Forzar la protección por contraseña
+Establecer fecha de caducidad predeterminada para recurtsos compartidos por enlace o por correo electronico.
+```
