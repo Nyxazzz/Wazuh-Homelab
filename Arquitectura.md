@@ -27,7 +27,6 @@ Hardware Virtual:
   - Almacenamiento: 100GB
   - CPU: 2
 
-Del apartado de **Atacante/Red Team** tenemos un nodo fisico destionado a esas operaciones.
 
-## Nodo Fisico: Neko Void OS
+## Nodo Fisico Atacante: Neko Void OS
 Sistema Operativo integrado con herramientas de seguridad ofensiva para pruebas de ataque al servidor de la VM-01
