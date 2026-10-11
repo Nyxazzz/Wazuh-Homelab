@@ -30,3 +30,9 @@ Hardware Virtual:
 
 ## Nodo Fisico Atacante: Neko Void OS
 Sistema Operativo integrado con herramientas de seguridad ofensiva para pruebas de ataque al servidor de la VM-01
+<img width="843" height="391" alt="image" src="https://github.com/user-attachments/assets/bf11d55f-e8f4-459f-9ff4-9dfad6233ed6" />
+
+Hardware
+- RAM: 15.3 GB
+- Almacenamiento: 233 GB
+
