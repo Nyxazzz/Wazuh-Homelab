@@ -269,3 +269,12 @@ Pedir siempre la contraseña
 Forzar la protección por contraseña
 Establecer fecha de caducidad predeterminada para recurtsos compartidos por enlace o por correo electronico.
 ```
+
+
+## Control de Subidads y Descargas en Nextcloud
+Como no queremos que nuestro almacenamiento se descontrole de un momento a otro, poemos añadir configuraciones para evitar el uso abusivo del almcanemiento o de subir cantidades de informacion sin control.
+
+### Limitar las descargas de enlaces públicos
+Para hacer esto, podremos aprovechar uno de los plugins que teneos instalado, llamado **Files Download Limit**, el cual nos permite establaecer un limite de descargas de un archivo compartido publicamente.
+
+Al darle al boton **compartir**, tendremos que darle al boton de **Crear un enlace publico**
